@@ -7,7 +7,12 @@ public class Result
 {
     public static string RollTheString(string s, List<int> rolls)
     {
-        throw new NotImplementedException();
+        var rollOperations = RollOperations(rolls);
+        var rolledChars = s.ToCharArray()
+            .Select((item, index) => new { Index = index, Char = item })
+            .Select(pair => PerformRoll(pair.Char, rollOperations[pair.Index]));
+        var result = string.Join(null, rolledChars);
+        return result;
     }
 
     private const int Delta = 'z' - 'a' + 1;

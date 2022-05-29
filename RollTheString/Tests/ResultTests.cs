@@ -56,4 +56,27 @@ public class ResultTests
 
         result.Should().Be(expected);
     }
+
+    [Theory]
+    [InlineData("abz", "dda", 3, 2, 1)]
+    [InlineData("bca", "eeb", 1, 2, 3)]
+    [InlineData("zcza", "debb", 1, 1, 3, 4)]
+    [InlineData("a", "b", 1)]
+    public void RollTheString_ShouldReturnExpectedValue(string data, string expected, params int[] rolls)
+    {
+        var ints = new List<int>(rolls);
+        var result = Result.RollTheString(data, ints);
+
+        result.Should().Be(expected);
+    }
+
+    [Theory]
+    [InlineData("a", "d", 2)]
+    public void RollTheString_ShouldThrow_WhenDataIsInvalid(string data, string expected, params int[] rolls)
+    {
+        var ints = new List<int>(rolls);
+        var action = () => Result.RollTheString(data, ints);
+
+        action.Should().Throw<Exception>();
+    }
 }
