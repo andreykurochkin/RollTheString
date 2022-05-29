@@ -10,6 +10,8 @@ public class Result
         throw new NotImplementedException();
     }
 
+    private const int Delta = 'z' - 'a' + 1;
+
     public static List<int> RollOperations(List<int> source)
     {
         var result = new int[source.Count + 1].ToList();
@@ -29,7 +31,7 @@ public class Result
 
     public static char PerformRoll(char c, int rollValue)
     {
-        throw new NotImplementedException();
+        return (char)
+            ((c + rollValue - 'a') % Delta + 'a');
     }
-
 }
